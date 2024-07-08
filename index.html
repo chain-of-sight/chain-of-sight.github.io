@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accelerating Pre-training of Multimodal LLMs via Chain-of-Sight</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B8LKJKTNRW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B8LKJKTNRW');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="icon" href="./static/images/icon2.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Accelerating Pre-training of Multimodal LLMs via Chain-of-Sight</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://huang-ziyuan.github.io/">Ziyuan Huang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=PNTIf4gAAAAJ&hl=zh-CN">Kaixiang Ji</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=BwdpTiQAAAAJ&hl=zh-CN">Biao Gong</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=q9refl4AAAAJ&hl=zh-CN">Zhiwu Qing</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.tw/citations?user=LYR7l98AAAAJ&hl=zh-CN">Qinglong Zhang</a><sup>1</sup>,</span><br>
+            <span class="author-block">
+              <a href="https://zkcys001.github.io/">Kecheng Zheng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=gz_hWPoAAAAJ&hl=zh-CN">Jian Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=8SCEv-YAAAAJ&hl=en">Jingdong Chen</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&user=uBHJx08AAAAJ">Ming Yang</a><sup>1</sup>,</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Ant Group</span><br>
+            <span class="author-block"><sup>2</sup>Huazhong University of Science and Technology</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <img    src="./static/images/chain-of-sight_concept.png"
+                class="interpolation-image"
+                alt="Interpolate start reference image."/>
+        <p class="subtitle has-text-centered">
+          Concept overview.
+        </p>
+        <img    src="./static/images/chain-of-sight_acceleration.png" 
+                style="width: 40%; margin-left: auto; margin-right: auto; display: block;"
+                alt="Interpolate start reference image."/>
+        <p class="subtitle has-text-centered">
+          Performance overview.
+        </p>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+            Our Chain-of-Sight integrates the idea of multi-scale hierachy to MLLMs, where visual contents are represented with a collection of visual tokens across various scales.
+            Thanks to Chain-of-Sight, we can achieve a <b style="color: purple;">16-fold</b> increase in the number of tokens after the pre-training phase.
+            This scalability allows us to start with a substantially smaller number of visual tokens in pre-training, cutting down the wall-clock pre-training time by up to <b style="color: purple;">73%</b>.
+            Thus, Chain-of-Sight offers a powerful blend of training efficiency and enhanced visual detail, readying models for advanced tasks with both speed and precision.
+      </div>
+    </div>  
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper introduces Chain-of-Sight, a vision-language bridge module that 
+            accelerates the pre-training of Multimodal Large Language Models (MLLMs). 
+          </p>
+          
+          <p>
+            Our approach employs a sequence of visual resamplers that capture visual details at various spacial scales.
+            This architecture not only leverages global and local visual contexts effectively, but also facilitates the flexible extension of visual tokens through a compound token scaling strategy, allowing up to a <b>16x</b> increase in the token count post pre-training.
+            Consequently, Chain-of-Sight requires significantly fewer visual tokens in the pre-training phase compared to the fine-tuning phase. 
+            This intentional reduction of visual tokens during pre-training notably accelerates the pre-training process, cutting down the wall-clock training time by ~<b>73%</b>.
+          </p>
+          
+          <p>
+            Empirical results on a series of vision-language benchmarks reveal that the pre-train acceleration through Chain-of-Sight is achieved without sacrificing performance, matching or surpassing the standard pipeline of utilizing all visual tokens throughout the entire training process. 
+            Further scaling up the number of visual tokens for pre-training leads to stronger performances, competitive to existing approaches in a series of benchmarks. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Chain-of-Sight Architecture</h2>
+        <img src="./static/images/chain-of-sight_architecture.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <p>The core component of Chain-of-Sight is the multi-scale visual resampler. 
+          We we partition the visual features into non-overlapping local windows of various sizes, forming features of multiple scales.
+          At each scale level, each windowed feature is allocated with a certain number of learnable queries. 
+          These learnable queries are then utilized within the visual resampler to perform cross-attention solely on their corresponding windowed feature. 
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Post-pretrain Token Scaling</h2>
+          <img src="./static/images/chain-of-sight_tokenscaling.png"
+               class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+        
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <p>With our multi-scale visual resampler, we present compound token scaling strategy that combines token scaling with shrinking window sizes and increasing input resolution, which allows for an escalation of the token count by 16x.</p>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Ablations</h2>
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Captioning, VQA, Text, and VLM-Benchmarks</h2>
+          <img src="./static/images/ablation_tasks.png"
+               class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">Referring Expression Comprehension</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <img src="./static/images/ablation_refcoco.png"
+               class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <p>Compared to linear projection & visual resampler, Chain-of-Sight enjoys faster pre-training and on-par or better performances.</p>
+    <div class="column is-full-width">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Token scaling ablations</h2>
+          <img src="./static/images/ablation_tokenscaling.png" style="width: 80%; margin-left: auto; margin-right: auto; display: block;"/>
+        </div>
+      </div>
+    </div>
+    <p>With the 80 tokens used during pre-training, scaling up the number of tokens in the supervised fine-tuning stage brings significant gains on captioning, text recognition, and mitigating hallucinations.</p>
+
+    <!--/ Matting. -->
+
+    <!-- Animation. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Animation</h2> -->
+
+        <!-- Interpolating. -->
+        <!-- <h3 class="title is-4">Interpolating states</h3>
+        <div class="content has-text-justified">
+          <p>
+            We can also animate the scene by interpolating the deformation latent codes of two input
+            frames. Use the slider here to linearly interpolate between the left frame and the right
+            frame.
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_start.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <p>Start Frame</p>
+          </div>
+          <div class="column interpolation-video-column">
+            <div id="interpolation-image-wrapper">
+              Loading...
+            </div>
+            <input class="slider is-fullwidth is-large is-info"
+                   id="interpolation-slider"
+                   step="1" min="0" max="100" value="0" type="range">
+          </div>
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_end.jpg"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+            <p class="is-bold">End Frame</p>
+          </div>
+        </div>
+        <br/> -->
+        <!--/ Interpolating. -->
+
+        <!-- Re-rendering. -->
+        <!-- <h3 class="title is-4">Re-rendering the input video</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div> -->
+        <!--/ Re-rendering. -->
+
+      <!-- </div>
+    </div> -->
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparisons with existing approaches</h2>
+          <img src="./static/images/sota_comparison_tasks.png" style="width: 80%; margin-left: auto; margin-right: auto; display: block;"/>
+      </div>
+    </div>
+    <p>Compared with existing approaches, CoS-7B pre-trained with less tokens and fine-tuned with substantially lower parameters achieves competitive performance, on both question answering tasks (above) and referring expression comprehension (below). </p>
+    <br>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/images/sota_comparison_refcoco.png" style="width: 80%; margin-left: auto; margin-right: auto; display: block;"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--/ Citation, TODO. -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{huang2024accelerating,
+  author    = {Huang, Ziyuan and Ji, Kaixiang and Gong, Biao and Qing, Zhiwu and Zhang, Qinglong and Zheng, Kecheng and Wang, Jian and Chen, Jingdong and Yang, Ming},
+  title     = {Accelerating Pre-training of Multimodal LLMs via Chain-of-Sight},
+  journal   = {arXiv preprint arXiv:2406},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted based on the template of <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, which is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
